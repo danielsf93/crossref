@@ -271,8 +271,30 @@ class ArticleCrossrefXmlFilter extends IssueCrossrefXmlFilter {
 		return $journalArticleNode;
 	}
 
+/*
 
-	
+
+
+
+
+
+
+
+
+	//////// inicio JournalArticleNodedois
+
+
+
+
+
+
+
+
+
+
+
+
+*/
 
 	function createJournalArticleNodedois($doc, $submission) {
 		$deployment = $this->getDeployment();
@@ -285,7 +307,7 @@ class ArticleCrossrefXmlFilter extends IssueCrossrefXmlFilter {
 		// Issue shoulld be set by now
 		$issue = $deployment->getIssue();
 
-		$JournalArticleNodedois = $doc->createElementNS($deployment->getNamespace(), 'journal_articledois');
+		$JournalArticleNodedois = $doc->createElementNS($deployment->getNamespace(), 'journal_article_dois');
 		$JournalArticleNodedois->setAttribute('publication_type', 'full_text');
 		$JournalArticleNodedois->setAttribute('metadata_distribution_opts', 'any');
 
@@ -405,8 +427,12 @@ class ArticleCrossrefXmlFilter extends IssueCrossrefXmlFilter {
 			$JournalArticleNodedois->appendChild($licenseNode);
 		}
 
+		//  A PARTIR DAQUI TEM QUE SER MUDADO?
+
 		// DOI data
-		$doiDataNode = $this->createDOIDataNode($doc, $publication->getStoredPubId('doi'), $request->url($context->getPath(), 'article00', 'view', $submission->getBestId(), null, null, true));
+		$doiDataNode = $this->createDOIDataNode($doc, $publication->getStoredPubId('doi'), $request->url($context->getPath(), 'article00b', 'view', $submission->getBestId(), null, null, true));
+
+		
 		// append galleys files and collection nodes to the DOI data node
 		$galleys = $publication->getData('galleys');
 		// All full-texts, PDF full-texts and remote galleys for text-mining and as-crawled URL
@@ -465,6 +491,36 @@ class ArticleCrossrefXmlFilter extends IssueCrossrefXmlFilter {
 		return $JournalArticleNodedois;
 	}
 
+
+
+
+
+
+/*
+
+
+
+
+
+
+
+
+
+	//////// fim JournalArticleNodedois
+
+
+
+
+
+
+
+
+
+
+
+
+*/
+	
 
 	/**
 	 * Append the collection node 'collection property="crawler-based"' to the doi data node.
