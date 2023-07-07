@@ -1,0 +1,68 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-11-04T08:59:13-08:00\n"
+"PO-Revision-Date: 2020-06-12 22:00+0000\n"
+"Last-Translator: Huang Feilong <hfl@huangfeilong.com>\n"
+"Language-Team: Chinese (Simplified) <http://translate.pkp.sfu.ca/projects/"
+"ojs/importexport-crossref/zh_Hans/>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "plugins.importexport.crossref.displayName"
+msgstr "CrossRef XML导出插件"
+
+msgid "plugins.importexport.crossref.description"
+msgstr "导出文章元数据为CrossRef XML格式。"
+
+msgid "plugins.importexport.crossref.cliUsage"
+msgstr ""
+"用法:\n"
+"{$scriptName} {$pluginName} export [xmlFileName] [journal_path] articles objectId1 [objectId2] ...\n"
+"{$scriptName} {$pluginName} register [journal_path] articles objectId1 [objectId2] ...\n"
+""
+
+msgid "plugins.importexport.crossref.settings.form.username"
+msgstr "用户名"
+
+msgid "plugins.importexport.crossref.settings.form.usernameRequired"
+msgstr "请输入CrossRef为您配置的用户名"
+
+msgid "plugins.importexport.crossref.settings.depositorIntro"
+msgstr "请输入CrossRef DOI存储负责人的姓名和邮箱"
+
+msgid "plugins.importexport.crossref.settings.form.depositorName"
+msgstr "存储名"
+
+msgid "plugins.importexport.crossref.settings.form.depositorEmail"
+msgstr "存储邮箱"
+
+msgid "plugins.importexport.crossref.settings.form.depositorNameRequired"
+msgstr "请输入存储名"
+
+msgid "plugins.importexport.crossref.settings.form.depositorEmailRequired"
+msgstr "请输入存储邮件"
+
+msgid "plugins.importexport.crossref.requirements"
+msgstr "要求"
+
+msgid "plugins.importexport.crossref.requirements.satisfied"
+msgstr "已满足所有插件的要求"
+
+msgid "plugins.importexport.crossref.error.noDOIContentObjects"
+msgstr "在DOI公共标识符插件中没有为文章设定 DOI 标识，因此该插件不能存储或者输出。"
+
+msgid "plugins.importexport.crossref.error.issnNotConfigured"
+msgstr ""
+"没有设定 ISSN ！必须在<a href=\"{$journalSettingsUrl}\" target=\"_blank\">期刊设置页</a>"
+"设置 ISSN 。"
+
+msgid "plugins.importexport.crossref.error.publisherNotConfigured"
+msgstr ""
+"还没有设定期刊发行商！必须在<a href=\"{$journalSettingsUrl}\" target=\"_blank\""
+">期刊设置页</a>设置一个发行机构。"
