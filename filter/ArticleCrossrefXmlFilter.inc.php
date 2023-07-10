@@ -48,6 +48,7 @@ class ArticleCrossrefXmlFilter extends IssueCrossrefXmlFilter {
 		assert(is_a($pubObject, 'Submission'));
 		$journalNode->appendChild($this->createJournalArticleNode($doc, $pubObject));
 		$journalNode->appendChild($this->createJournalArticleNodedois($doc, $pubObject));
+		$journalNode->appendChild($this->createJournalArticleNodetres($doc, $pubObject));
 		return $journalNode;
 	}
 
@@ -296,6 +297,10 @@ class ArticleCrossrefXmlFilter extends IssueCrossrefXmlFilter {
 
 */
 
+//////pegando o primeiro pdf
+
+
+
 	function createJournalArticleNodedois($doc, $submission) {
 	$deployment = $this->getDeployment();
 	$context = $deployment->getContext();
@@ -339,6 +344,76 @@ class ArticleCrossrefXmlFilter extends IssueCrossrefXmlFilter {
 
 	return $JournalArticleNodedois;
 }
+
+
+
+
+
+
+
+
+///////pegando o segundo pdf:
+
+
+function createJournalArticleNodetres($doc, $submission) {
+	$deployment = $this->getDeployment();
+	$context = $deployment->getContext();
+	$request = Application::get()->getRequest();
+
+	$publication = $submission->getCurrentPublication();
+	$locale = $publication->getData('locale');
+
+	// Issue should be set by now
+	$issue = $deployment->getIssue();
+
+	$JournalArticleNodetres = $doc->createElementNS($deployment->getNamespace(), 'journal_article_tres');
+	$JournalArticleNodetres->setAttribute('publication_type', 'full_text');
+	$JournalArticleNodetres->setAttribute('metadata_distribution_opts', 'any');
+
+	// title, contributors, abstract, publication date, pages, license, etc. (existing code)
+
+	// Get the first PDF galley, if available
+	// Get the first and second PDF galleys, if available
+$pdfGalley1 = null;
+$pdfGalley2 = null;
+$galleys = $publication->getData('galleys');
+foreach ($galleys as $galley) {
+    if ($galley->isPdfGalley()) {
+        if (!$pdfGalley1) {
+            $pdfGalley1 = $galley;
+        } elseif (!$pdfGalley2) {
+            $pdfGalley2 = $galley;
+            break; // Encerra o loop após encontrar o segundo PDF galley
+        }
+    }
+}
+
+// Verifique se o segundo PDF galley foi encontrado
+if ($pdfGalley2) {
+    // Obtenha a URL do segundo PDF galley
+    $galleyUrl2 = $request->url($context->getPath(), 'article01', 'download01', array($submission->getBestId(), $pdfGalley2->getBestGalleyId()), null, null, true);
+    // Obtenha o DOI do segundo PDF galley
+    $galleyDoi2 = $pdfGalley2->getStoredPubId('doi');
+
+    // Crie o nó de dados DOI para o segundo PDF galley
+    $doiDataNode2 = $this->createDOIDataNode($doc, $galleyDoi2, $galleyUrl2);
+    $JournalArticleNodetres->appendChild($doiDataNode2);
+}
+
+	
+
+	// component list (supplementary files) (existing code)
+
+	return $JournalArticleNodetres;
+}
+
+
+
+
+
+
+
+
 
 
 
