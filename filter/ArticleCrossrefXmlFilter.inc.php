@@ -47,10 +47,25 @@ class ArticleCrossrefXmlFilter extends IssueCrossrefXmlFilter {
 		$journalNode = parent::createJournalNode($doc, $pubObject);
 		assert(is_a($pubObject, 'Submission'));
 		$journalNode->appendChild($this->createJournalArticleNode($doc, $pubObject));
-		$journalNode->appendChild($this->createJournalArticleNodedois($doc, $pubObject));
-		$journalNode->appendChild($this->createJournalArticleNodetres($doc, $pubObject));
+	
+		// Verificar o número de PDFs
+		$galleys = $pubObject->getCurrentPublication()->getData('galleys');
+		$numPdfs = 0;
+		foreach ($galleys as $galley) {
+			if ($galley->isPdfGalley()) {
+				$numPdfs++;
+			}
+		}
+	
+		// Verificar se existem dois PDFs e chamar a função correspondente
+		if ($numPdfs == 2) {
+			$journalNode->appendChild($this->createJournalArticleNodedois($doc, $pubObject));
+			$journalNode->appendChild($this->createJournalArticleNodetres($doc, $pubObject));
+		}
+	
 		return $journalNode;
 	}
+	
 
 	/**
 	 * Create and return the journal issue node 'journal_issue'.
