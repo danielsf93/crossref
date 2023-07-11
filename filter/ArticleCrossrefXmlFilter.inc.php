@@ -42,6 +42,21 @@ class ArticleCrossrefXmlFilter extends IssueCrossrefXmlFilter {
 	/**
 	 * @copydoc IssueCrossrefXmlFilter::createJournalNode()
 	 */
+
+
+
+	 /* 
+	 
+	-- modificação 01:
+	contando o número de pdf's para chamar as funções
+	 -createJournalArticleNodedois
+	 -createJournalArticleNodetres
+
+	 por enquanto só funciona se o artigo possuir 2 pdf's. Se o artigo tiver 1 pdf apenas, o plugin vai funcionar como veio funcionando até aqui
+	 se tiver 2 pdf's vai pegar o doi (galleyDoi) de cada um e adicionar no arquivo xml com a tag <journal_article>
+	 
+	 
+	 */
 	function createJournalNode($doc, $pubObject) {
 		$deployment = $this->getDeployment();
 		$journalNode = parent::createJournalNode($doc, $pubObject);
@@ -59,7 +74,9 @@ class ArticleCrossrefXmlFilter extends IssueCrossrefXmlFilter {
 	
 		// Verificar se existem dois PDFs e chamar a função correspondente
 		if ($numPdfs == 2) {
+			//chama a função que pega o primeiro pdf
 			$journalNode->appendChild($this->createJournalArticleNodedois($doc, $pubObject));
+			//chama a função que pega o segundo pdf
 			$journalNode->appendChild($this->createJournalArticleNodetres($doc, $pubObject));
 		}
 	
@@ -228,7 +245,7 @@ class ArticleCrossrefXmlFilter extends IssueCrossrefXmlFilter {
 		}
 
 		// DOI data
-		$doiDataNode = $this->createDOIDataNode($doc, $publication->getStoredPubId('doi'), $request->url($context->getPath(), 'article00', 'view', $submission->getBestId(), null, null, true));
+		$doiDataNode = $this->createDOIDataNode($doc, $publication->getStoredPubId('doi'), $request->url($context->getPath(), 'article', 'view', $submission->getBestId(), null, null, true));
 		// append galleys files and collection nodes to the DOI data node
 		$galleys = $publication->getData('galleys');
 		// All full-texts, PDF full-texts and remote galleys for text-mining and as-crawled URL
@@ -287,22 +304,14 @@ class ArticleCrossrefXmlFilter extends IssueCrossrefXmlFilter {
 		return $journalArticleNode;
 	}
 
-/*
+/* 
+	 
+	-- modificação 02:
 
-INICIO DAS MUDANÇAS
 -createJournalArticleNodedois
--createJournalArticleNodetres
 
-
-*/
-
-
-
-
-
-/*
-
-pegando o primeiro pdf:
+Vai verificar qual é o primeiro pdf e seu doi respectivo. Preenche os correspondentes das subtags <doi> e <resource>
+A parte modificada aparece logo em seguida com "modificação 02 INICIO / FIM"
 
 */
 
@@ -317,7 +326,7 @@ pegando o primeiro pdf:
 		// Issue shoulld be set by now
 		$issue = $deployment->getIssue();
 
-		$JournalArticleNodedois = $doc->createElementNS($deployment->getNamespace(), 'journal_article_dois');
+		$JournalArticleNodedois = $doc->createElementNS($deployment->getNamespace(), 'journal_article');
 		$JournalArticleNodedois->setAttribute('publication_type', 'full_text');
 		$JournalArticleNodedois->setAttribute('metadata_distribution_opts', 'any');
 
@@ -437,15 +446,10 @@ pegando o primeiro pdf:
 			$JournalArticleNodedois->appendChild($licenseNode);
 		}
 
+/*
+		modificação 02 INICIO
 
-
-
-
-
-		//  inicio código modificado
-
-
-
+                                           */
 		$pdfGalley = null;
 		$galleys = $publication->getData('galleys');
 		foreach ($galleys as $galley) {
@@ -458,7 +462,7 @@ pegando o primeiro pdf:
 		// Check if a PDF galley is found
 		if ($pdfGalley) {
 			// Get the URL of the first PDF galley
-			$galleyUrl = $request->url($context->getPath(), 'article01', 'download0meu1', array($submission->getBestId(), $pdfGalley->getBestGalleyId()), null, null, true);
+			$galleyUrl = $request->url($context->getPath(), 'article', 'download', array($submission->getBestId(), $pdfGalley->getBestGalleyId()), null, null, true);
 			// Get the DOI of the PDF galley
 			$galleyDoi = $pdfGalley->getStoredPubId('doi');
 	
@@ -468,12 +472,10 @@ pegando o primeiro pdf:
 		}
 
 
+/*
+		modificação 02 FIM
 
-		// fim código modificado
-
-
-
-
+                                           */
 
 
 		
@@ -537,9 +539,14 @@ pegando o primeiro pdf:
 
 
 
-/*
+/* 
+	 
+	-- modificação 03:
 
-pegando o segundo pdf:
+-createJournalArticleNodetres
+
+Vai verificar qual é o segundo pdf e seu doi respectivo. Preenche os correspondentes das subtags <doi> e <resource>
+A parte modificada aparece logo em seguida com "modificação 03 INICIO / FIM"
 
 */
 
@@ -556,7 +563,7 @@ function createJournalArticleNodetres($doc, $submission) {
 	// Issue shoulld be set by now
 	$issue = $deployment->getIssue();
 
-	$JournalArticleNodetres = $doc->createElementNS($deployment->getNamespace(), 'journal_article_tres');
+	$JournalArticleNodetres = $doc->createElementNS($deployment->getNamespace(), 'journal_article');
 	$JournalArticleNodetres->setAttribute('publication_type', 'full_text');
 	$JournalArticleNodetres->setAttribute('metadata_distribution_opts', 'any');
 
@@ -676,16 +683,12 @@ function createJournalArticleNodetres($doc, $submission) {
 		$JournalArticleNodetres->appendChild($licenseNode);
 	}
 
+/*
+
+	modificação 03 INICIO
 
 
-
-
-
-
-
-	// inicio código modificado
-
-
+							   */
 	$pdfGalley1 = null;
 $pdfGalley2 = null;
 $galleys = $publication->getData('galleys');
@@ -703,7 +706,7 @@ foreach ($galleys as $galley) {
 	// Check if a PDF galley is found
 	if ($pdfGalley2) {
 		// Get the URL of the first PDF galley
-		$galleyUrl = $request->url($context->getPath(), 'article022', 'download0meu22', array($submission->getBestId(), $pdfGalley2->getBestGalleyId()), null, null, true);
+		$galleyUrl = $request->url($context->getPath(), 'article', 'download', array($submission->getBestId(), $pdfGalley2->getBestGalleyId()), null, null, true);
 		// Get the DOI of the PDF galley
 		$galleyDoi = $pdfGalley2->getStoredPubId('doi');
 
@@ -712,17 +715,12 @@ foreach ($galleys as $galley) {
 		$JournalArticleNodetres->appendChild($doiDataNode);
 	}
 
+/*
+
+	modificação 03 FIM
 
 
-	// fim código modificado
-
-
-
-
-
-
-
-	
+							   */
 
 	
 	// append galleys files and collection nodes to the DOI data node
@@ -783,17 +781,6 @@ foreach ($galleys as $galley) {
 	return $JournalArticleNodetres;
 }
 
-
-
-
-
-
-
-
-
-
-
-
 	/**
 	 * Append the collection node 'collection property="crawler-based"' to the doi data node.
 	 * @param $doc DOMDocument
@@ -812,7 +799,7 @@ foreach ($galleys as $galley) {
 			$doiDataNode->appendChild($crawlerBasedCollectionNode);
 		}
 		foreach ($galleys as $galley) {
-			$resourceURL = $request->url($context->getPath(), 'article01', 'download01', array($submission->getBestId(), $galley->getBestGalleyId()), null, null, true);
+			$resourceURL = $request->url($context->getPath(), 'article', 'download', array($submission->getBestId(), $galley->getBestGalleyId()), null, null, true);
 			// iParadigms crawler based collection element
 			$crawlerBasedCollectionNode = $doc->createElementNS($deployment->getNamespace(), 'collection');
 			$crawlerBasedCollectionNode->setAttribute('property', 'crawler-based');
@@ -840,7 +827,7 @@ foreach ($galleys as $galley) {
 		$textMiningCollectionNode = $doc->createElementNS($deployment->getNamespace(), 'collection');
 		$textMiningCollectionNode->setAttribute('property', 'text-mining');
 		foreach ($galleys as $galley) {
-			$resourceURL = $request->url($context->getPath(), 'article02', 'download02', array($submission->getBestId(), $galley->getBestGalleyId()), null, null, true);
+			$resourceURL = $request->url($context->getPath(), 'article', 'download', array($submission->getBestId(), $galley->getBestGalleyId()), null, null, true);
 			// text-mining collection item
 			$textMiningItemNode = $doc->createElementNS($deployment->getNamespace(), 'item');
 			$resourceNode = $doc->createElementNS($deployment->getNamespace(), 'resource', $resourceURL);
@@ -878,7 +865,7 @@ foreach ($galleys as $galley) {
 				$componentNode->appendChild($titlesNode);
 			}
 			// DOI data node
-			$resourceURL = $request->url($context->getPath(), 'article03', 'download03', array($submission->getBestId(), $componentGalley->getBestGalleyId()), null, null, true);
+			$resourceURL = $request->url($context->getPath(), 'article', 'download', array($submission->getBestId(), $componentGalley->getBestGalleyId()), null, null, true);
 			$componentNode->appendChild($this->createDOIDataNode($doc, $componentGalley->getStoredPubId('doi'), $resourceURL));
 			$componentListNode->appendChild($componentNode);
 		}
