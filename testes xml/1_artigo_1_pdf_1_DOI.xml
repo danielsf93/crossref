@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doi_batch xmlns="http://www.crossref.org/schema/4.3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jats="http://www.ncbi.nlm.nih.gov/JATS1" xmlns:ai="http://www.crossref.org/AccessIndicators.xsd" version="4.3.6" xsi:schemaLocation="http://www.crossref.org/schema/4.3.6 https://www.crossref.org/schemas/crossref4.3.6.xsd">
+  <head>
+    <doi_batch_id>_1689161985</doi_batch_id>
+    <timestamp>1689161985</timestamp>
+    <depositor>
+      <depositor_name>depositante</depositor_name>
+      <email_address>depo@sitan.te</email_address>
+    </depositor>
+    <registrant>edgu</registrant>
+  </head>
+  <body>
+    <journal>
+      <journal_metadata>
+        <full_title>geousp</full_title>
+        <abbrev_title>geousp</abbrev_title>
+        <issn media_type="electronic">2179-0892</issn>
+        <issn media_type="print">2179-0892</issn>
+      </journal_metadata>
+      <journal_issue>
+        <publication_date media_type="online">
+          <month>07</month>
+          <day>12</day>
+          <year>2023</year>
+        </publication_date>
+        <journal_volume>
+          <volume>26</volume>
+        </journal_volume>
+        <issue>3</issue>
+      </journal_issue>
+      <journal_article xmlns:jats="http://www.ncbi.nlm.nih.gov/JATS1" xmlns:ai="http://www.crossref.org/AccessIndicators.xsd" publication_type="full_text" metadata_distribution_opts="any">
+        <titles>
+          <title>Vulnerabilidade social no litoral lagunar do Rio Grande do Sul</title>
+          <subtitle>mapeamento de índice de vulnerabilidade social para a orla municipal de Pelotas-RS </subtitle>
+        </titles>
+        <contributors>
+          <person_name contributor_role="author" sequence="first" language="pt">
+            <given_name>Allan</given_name>
+            <surname>De Oliveira</surname>
+            <ORCID>https://orcid.org/0000-0001-8287-1894</ORCID>
+          </person_name>
+          <person_name contributor_role="author" sequence="additional" language="pt">
+            <given_name>Moisés</given_name>
+            <surname>Ortemar Rehbein</surname>
+            <ORCID>https://orcid.org/0000-0001-8237-437X</ORCID>
+          </person_name>
+        </contributors>
+        <jats:abstract xmlns:jats="http://www.ncbi.nlm.nih.gov/JATS1">
+          <jats:p>A elevação do nível do mar resultante da mudança climática vem alterando a dinâmica dos sistemas costeiros e pondo em risco a população que reside em zonas costeiras baixas. Identificar a população em situação de vulnerabilidade social é fundamental, pois é esta que mais sofrerá o impacto de subida do nível do mar. O objetivo deste artigo é gerar um índice de vulnerabilidade social (IVSo) para a orla municipal de Pelotas, no Rio Grande do Sul. Adotou-se a análise de componentes principais considerando 11 indicadores para o ano de 2010 nos setores censitários em contato com a orla. A metodologia explicou 80,8% da variância dos dados a partir de três componentes. A maioria dos setores apresentou IVSo alta (82,6%), e os indicadores renda e educação tiveram o maior peso na definição do índice.</jats:p>
+        </jats:abstract>
+        <publication_date media_type="online">
+          <month>07</month>
+          <day>01</day>
+          <year>2023</year>
+        </publication_date>
+        <ai:program xmlns:ai="http://www.crossref.org/AccessIndicators.xsd" name="AccessIndicators">
+          <ai:license_ref>https://creativecommons.org/licenses/by/4.0/</ai:license_ref>
+        </ai:program>
+        <doi_data>
+          <doi>10.1234/geousp.v26i3.6</doi>
+          <resource>http://0.0.0.0:8888/index.php/geousp/article/view/6</resource>
+          <collection property="crawler-based">
+            <item crawler="iParadigms">
+              <resource>http://0.0.0.0:8888/index.php/geousp/article/download/6/9</resource>
+            </item>
+          </collection>
+          <collection property="text-mining">
+            <item>
+              <resource mime_type="application/pdf">http://0.0.0.0:8888/index.php/geousp/article/download/6/9</resource>
+            </item>
+          </collection>
+        </doi_data>
+      </journal_article>
+    </journal>
+  </body>
+</doi_batch>

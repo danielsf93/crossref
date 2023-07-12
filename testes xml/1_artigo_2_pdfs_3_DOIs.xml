@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doi_batch xmlns="http://www.crossref.org/schema/4.3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jats="http://www.ncbi.nlm.nih.gov/JATS1" xmlns:ai="http://www.crossref.org/AccessIndicators.xsd" version="4.3.6" xsi:schemaLocation="http://www.crossref.org/schema/4.3.6 https://www.crossref.org/schemas/crossref4.3.6.xsd">
+  <head>
+    <doi_batch_id>_1689162036</doi_batch_id>
+    <timestamp>1689162036</timestamp>
+    <depositor>
+      <depositor_name>depositante</depositor_name>
+      <email_address>depo@sitan.te</email_address>
+    </depositor>
+    <registrant>edgu</registrant>
+  </head>
+  <body>
+    <journal>
+      <journal_metadata>
+        <full_title>geousp</full_title>
+        <abbrev_title>geousp</abbrev_title>
+        <issn media_type="electronic">2179-0892</issn>
+        <issn media_type="print">2179-0892</issn>
+      </journal_metadata>
+      <journal_issue>
+        <publication_date media_type="online">
+          <month>07</month>
+          <day>12</day>
+          <year>2023</year>
+        </publication_date>
+        <journal_volume>
+          <volume>26</volume>
+        </journal_volume>
+        <issue>3</issue>
+      </journal_issue>
+      <journal_article xmlns:jats="http://www.ncbi.nlm.nih.gov/JATS1" xmlns:ai="http://www.crossref.org/AccessIndicators.xsd" publication_type="full_text" metadata_distribution_opts="any">
+        <titles>
+          <title>Dossiê</title>
+          <subtitle>“Turismo em tempos de Pandemia”</subtitle>
+        </titles>
+        <contributors>
+          <person_name contributor_role="author" sequence="first" language="pt">
+            <given_name>Rita</given_name>
+            <surname>De Cássia Ariza da Cruz </surname>
+          </person_name>
+          <person_name contributor_role="author" sequence="additional" language="pt">
+            <given_name>Carolina</given_name>
+            <surname>Todesco </surname>
+          </person_name>
+        </contributors>
+        <jats:abstract xmlns:jats="http://www.ncbi.nlm.nih.gov/JATS1">
+          <jats:p>O presente dossiê resulta do trabalho ininterrupto, realizado nos últimos dois anos e meio, pela Rede Internacional de Pesquisa “Turismo em tempos de pandemia: uma análise multi e transescalar”, cuja coordenação geral está abrigada no Laboratório de Estudos Regionais-LERGEO, do Departamento de Geografia da Faculdade de Filosofia, Letras e Ciências Humanas-FFLCH da Universidade de São Paulo, e a qual reúne, na atualidade, pesquisadores de 32 Instituições de Ensino e Pesquisa de Brasil, Argentina, Moçambique e Portugal. Além disso, esse dossiê se soma a outros 4 publicados em periódicos de ampla circulação no Brasil (Caderno Virtual de Turismo, Revista GEOUERJ, Revista Formação) e no exterior, como é o caso da Revista Confins Franco-Brasileira. Outros dois livros, um livro de ensaios, publicado no início de 2021 pela Editora da FFLCH/USP, e um livro com resultados de pesquisa alcançados ao longo desse período (o qual se encontra em preparação), denotam a grande capacidade de trabalho dos pesquisadores da Rede assim como seu compromisso com a produção de um conhecimento crítico sobre efeitos deletérios da crise pandêmica sobre o setor de turismo, sobre as respostas dadas pela sociedade, pelo Estado e pelos agentes de mercado diante do imponderável e sobre perspectivas para o futuro da atividade nos países estudados.</jats:p>
+        </jats:abstract>
+        <publication_date media_type="online">
+          <month>07</month>
+          <day>01</day>
+          <year>2023</year>
+        </publication_date>
+        <ai:program xmlns:ai="http://www.crossref.org/AccessIndicators.xsd" name="AccessIndicators">
+          <ai:license_ref>https://creativecommons.org/licenses/by/4.0/</ai:license_ref>
+        </ai:program>
+        <doi_data>
+          <doi>10.1234/geousp.v26i3.7</doi>
+          <resource>http://0.0.0.0:8888/index.php/geousp/article/view/7</resource>
+          <collection property="crawler-based">
+            <item crawler="iParadigms">
+              <resource>http://0.0.0.0:8888/index.php/geousp/article/download/7/10</resource>
+            </item>
+          </collection>
+          <collection property="text-mining">
+            <item>
+              <resource mime_type="application/pdf">http://0.0.0.0:8888/index.php/geousp/article/download/7/10</resource>
+            </item>
+            <item>
+              <resource mime_type="application/pdf">http://0.0.0.0:8888/index.php/geousp/article/download/7/11</resource>
+            </item>
+          </collection>
+        </doi_data>
+      </journal_article>
+      <journal_article xmlns:jats="http://www.ncbi.nlm.nih.gov/JATS1" xmlns:ai="http://www.crossref.org/AccessIndicators.xsd" publication_type="full_text" metadata_distribution_opts="any">
+        <titles>
+          <title>Dossiê</title>
+          <subtitle>“Turismo em tempos de Pandemia”</subtitle>
+        </titles>
+        <contributors>
+          <person_name contributor_role="author" sequence="first" language="pt">
+            <given_name>Rita</given_name>
+            <surname>De Cássia Ariza da Cruz </surname>
+          </person_name>
+          <person_name contributor_role="author" sequence="additional" language="pt">
+            <given_name>Carolina</given_name>
+            <surname>Todesco </surname>
+          </person_name>
+        </contributors>
+        <jats:abstract xmlns:jats="http://www.ncbi.nlm.nih.gov/JATS1">
+          <jats:p>O presente dossiê resulta do trabalho ininterrupto, realizado nos últimos dois anos e meio, pela Rede Internacional de Pesquisa “Turismo em tempos de pandemia: uma análise multi e transescalar”, cuja coordenação geral está abrigada no Laboratório de Estudos Regionais-LERGEO, do Departamento de Geografia da Faculdade de Filosofia, Letras e Ciências Humanas-FFLCH da Universidade de São Paulo, e a qual reúne, na atualidade, pesquisadores de 32 Instituições de Ensino e Pesquisa de Brasil, Argentina, Moçambique e Portugal. Além disso, esse dossiê se soma a outros 4 publicados em periódicos de ampla circulação no Brasil (Caderno Virtual de Turismo, Revista GEOUERJ, Revista Formação) e no exterior, como é o caso da Revista Confins Franco-Brasileira. Outros dois livros, um livro de ensaios, publicado no início de 2021 pela Editora da FFLCH/USP, e um livro com resultados de pesquisa alcançados ao longo desse período (o qual se encontra em preparação), denotam a grande capacidade de trabalho dos pesquisadores da Rede assim como seu compromisso com a produção de um conhecimento crítico sobre efeitos deletérios da crise pandêmica sobre o setor de turismo, sobre as respostas dadas pela sociedade, pelo Estado e pelos agentes de mercado diante do imponderável e sobre perspectivas para o futuro da atividade nos países estudados.</jats:p>
+        </jats:abstract>
+        <publication_date media_type="online">
+          <month>07</month>
+          <day>01</day>
+          <year>2023</year>
+        </publication_date>
+        <ai:program xmlns:ai="http://www.crossref.org/AccessIndicators.xsd" name="AccessIndicators">
+          <ai:license_ref>https://creativecommons.org/licenses/by/4.0/</ai:license_ref>
+        </ai:program>
+        <doi_data>
+          <doi>10.1234/geousp.v26i3.7.g10</doi>
+          <resource>http://0.0.0.0:8888/index.php/geousp/article/download/7/10</resource>
+          <collection property="crawler-based">
+            <item crawler="iParadigms">
+              <resource>http://0.0.0.0:8888/index.php/geousp/article/download/7/10</resource>
+            </item>
+          </collection>
+          <collection property="text-mining">
+            <item>
+              <resource mime_type="application/pdf">http://0.0.0.0:8888/index.php/geousp/article/download/7/10</resource>
+            </item>
+            <item>
+              <resource mime_type="application/pdf">http://0.0.0.0:8888/index.php/geousp/article/download/7/11</resource>
+            </item>
+          </collection>
+        </doi_data>
+      </journal_article>
+      <journal_article xmlns:jats="http://www.ncbi.nlm.nih.gov/JATS1" xmlns:ai="http://www.crossref.org/AccessIndicators.xsd" publication_type="full_text" metadata_distribution_opts="any">
+        <titles>
+          <title>Dossiê</title>
+          <subtitle>“Turismo em tempos de Pandemia”</subtitle>
+        </titles>
+        <contributors>
+          <person_name contributor_role="author" sequence="first" language="pt">
+            <given_name>Rita</given_name>
+            <surname>De Cássia Ariza da Cruz </surname>
+          </person_name>
+          <person_name contributor_role="author" sequence="additional" language="pt">
+            <given_name>Carolina</given_name>
+            <surname>Todesco </surname>
+          </person_name>
+        </contributors>
+        <jats:abstract xmlns:jats="http://www.ncbi.nlm.nih.gov/JATS1">
+          <jats:p>O presente dossiê resulta do trabalho ininterrupto, realizado nos últimos dois anos e meio, pela Rede Internacional de Pesquisa “Turismo em tempos de pandemia: uma análise multi e transescalar”, cuja coordenação geral está abrigada no Laboratório de Estudos Regionais-LERGEO, do Departamento de Geografia da Faculdade de Filosofia, Letras e Ciências Humanas-FFLCH da Universidade de São Paulo, e a qual reúne, na atualidade, pesquisadores de 32 Instituições de Ensino e Pesquisa de Brasil, Argentina, Moçambique e Portugal. Além disso, esse dossiê se soma a outros 4 publicados em periódicos de ampla circulação no Brasil (Caderno Virtual de Turismo, Revista GEOUERJ, Revista Formação) e no exterior, como é o caso da Revista Confins Franco-Brasileira. Outros dois livros, um livro de ensaios, publicado no início de 2021 pela Editora da FFLCH/USP, e um livro com resultados de pesquisa alcançados ao longo desse período (o qual se encontra em preparação), denotam a grande capacidade de trabalho dos pesquisadores da Rede assim como seu compromisso com a produção de um conhecimento crítico sobre efeitos deletérios da crise pandêmica sobre o setor de turismo, sobre as respostas dadas pela sociedade, pelo Estado e pelos agentes de mercado diante do imponderável e sobre perspectivas para o futuro da atividade nos países estudados.</jats:p>
+        </jats:abstract>
+        <publication_date media_type="online">
+          <month>07</month>
+          <day>01</day>
+          <year>2023</year>
+        </publication_date>
+        <ai:program xmlns:ai="http://www.crossref.org/AccessIndicators.xsd" name="AccessIndicators">
+          <ai:license_ref>https://creativecommons.org/licenses/by/4.0/</ai:license_ref>
+        </ai:program>
+        <doi_data>
+          <doi>10.1234/geousp.v26i3.7.g11</doi>
+          <resource>http://0.0.0.0:8888/index.php/geousp/article/download/7/11</resource>
+          <collection property="crawler-based">
+            <item crawler="iParadigms">
+              <resource>http://0.0.0.0:8888/index.php/geousp/article/download/7/10</resource>
+            </item>
+          </collection>
+          <collection property="text-mining">
+            <item>
+              <resource mime_type="application/pdf">http://0.0.0.0:8888/index.php/geousp/article/download/7/10</resource>
+            </item>
+            <item>
+              <resource mime_type="application/pdf">http://0.0.0.0:8888/index.php/geousp/article/download/7/11</resource>
+            </item>
+          </collection>
+        </doi_data>
+      </journal_article>
+    </journal>
+  </body>
+</doi_batch>
