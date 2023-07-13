@@ -1,0 +1,65 @@
+2pdf)
+$pdfGalley1 = null;
+
+$pdfGalley2 = null;
+$galleys = $publication->getData('galleys');
+foreach ($galleys as $galley) {
+if ($galley->isPdfGalley()) {
+if (!$pdfGalley1) {
+$pdfGalley1 = $galley;
+} elseif (!$pdfGalley2) {
+$pdfGalley2 = $galley;
+
+            break; // Encerra o loop após encontrar o segundo PDF galley
+        }
+    }
+}
+
+3pdf)
+$pdfGalley3 = null;
+$galleys = $publication->getData('galleys');
+foreach ($galleys as $galley) {
+if ($galley->isPdfGalley()) {
+if (!$pdfGalley1) {
+$pdfGalley1 = $galley;
+} elseif (!$pdfGalley2) {
+$pdfGalley2 = $galley;
+
+	 } elseif (!$pdfGalley3) {
+	$pdfGalley3 = $galley;
+	break; 
+									  }
+    }
+}
+
+
+
+*******************************************************
+
+2pdf)
+
+	// Check if a PDF galley is found
+	if ($pdfGalley2) {
+		// Get the URL of the first PDF galley
+		$galleyUrl = $request->url($context->getPath(), 'article', 'download', array($submission->getBestId(), $pdfGalley2->getBestGalleyId()), null, null, true);
+		// Get the DOI of the PDF galley
+		$galleyDoi = $pdfGalley2->getStoredPubId('doi');
+
+		// Create DOI data node for the PDF galley
+		$doiDataNode = $this->createDOIDataNode($doc, $galleyDoi, $galleyUrl);
+		$JournalArticleNodetres->appendChild($doiDataNode);
+	}
+	
+3pdf)
+
+// Check if a PDF galley is found
+	if ($pdfGalley3) {
+        // Get the URL of the third PDF galley
+        $galleyUrl = $request->url($context->getPath(), 'article', 'download', array($submission->getBestId(), $pdfGalley3->getBestGalleyId()), null, null, true);
+        // Get the DOI of the PDF galley
+        $galleyDoi = $pdfGalley3->getStoredPubId('doi');
+
+        // Create DOI data node for the PDF galley
+        $doiDataNode = $this->createDOIDataNode($doc, $galleyDoi, $galleyUrl);
+        $JournalArticleNodequatro->appendChild($doiDataNode);
+    }
