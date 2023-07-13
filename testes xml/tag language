@@ -1,0 +1,40 @@
+subtags
+
+<person_name contributor_role="author" sequence="first" language="pt">
+
+
+nesse caso, crossref-20230713-120704-articles-1.xml,"pt" se refere a lingua a qual o artigo foi submetido. 
+
+com crossref-20230713-115023-articles-1.xml, onde foi submetido em inglês, o resultado é:
+
+<person_name contributor_role="author" sequence="first" language="en"> 
+
+Há também o caso em crossref-20230713-120704-articles-1.xml, onde há tradução para nomes e sobrenomes, temos os resultados:
+
+<journal_article publication_type="full_text" metadata_distribution_opts="any">
+<titles>
+<title>metadados traduzidos pt</title>
+</titles>
+<contributors>
+<person_name contributor_role="author" sequence="first" language="pt">
+<given_name>Joaopt</given_name>
+<surname>Sobrenomept</surname>
+<alt-name>
+<name language="en">
+<surname>Sobrenomesn</surname>
+<given_name>Joaoen</given_name>
+</name>
+<name language="es">
+<surname>Sobrenomees</surname>
+<given_name>Joaoes</given_name>
+</name>
+<name language="fr">
+<surname>Sobrenomefr</surname>
+<given_name>Joaofr</given_name>
+</name>
+<name language="it">
+<surname>Sobrenomeit</surname>
+<given_name>Joaoit</given_name>
+</name>
+</alt-name>
+</person_name>
