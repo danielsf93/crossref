@@ -49,8 +49,8 @@ class ArticleCrossrefXmlFilter extends IssueCrossrefXmlFilter {
 	 
 	-- modificação 01:
 	contando o número de pdf's para chamar as funções
-	 -createJournalArticleNodedois
-	 -createJournalArticleNodetres
+	 -createJournalArticleNode01
+	 -createJournalArticleNode02
 
 	 por enquanto só funciona se o artigo possuir 2 pdf's. Se o artigo tiver 1 pdf apenas, o plugin vai funcionar como veio funcionando até aqui
 	 se tiver 2 pdf's vai pegar o doi (galleyDoi) de cada um e adicionar no arquivo xml com a tag <journal_article>
@@ -75,16 +75,16 @@ class ArticleCrossrefXmlFilter extends IssueCrossrefXmlFilter {
 		// Chamar as funções correspondentes de acordo com o número de PDFs
 		if ($numPdfs == 2) {
 			// Chama a função que pega o primeiro pdf
-			$journalNode->appendChild($this->createJournalArticleNodedois($doc, $pubObject));
+			$journalNode->appendChild($this->createJournalArticleNode01($doc, $pubObject));
 			// Chama a função que pega o segundo pdf
-			$journalNode->appendChild($this->createJournalArticleNodetres($doc, $pubObject));
+			$journalNode->appendChild($this->createJournalArticleNode02($doc, $pubObject));
 		} elseif ($numPdfs == 3) {
 			// Chama a função que pega o primeiro pdf
-			$journalNode->appendChild($this->createJournalArticleNodedois($doc, $pubObject));
+			$journalNode->appendChild($this->createJournalArticleNode01($doc, $pubObject));
 			// Chama a função que pega o segundo pdf
-			$journalNode->appendChild($this->createJournalArticleNodetres($doc, $pubObject));
+			$journalNode->appendChild($this->createJournalArticleNode02($doc, $pubObject));
 			// Chama a função que pega o terceiro pdf
-			$journalNode->appendChild($this->createJournalArticleNodequatro($doc, $pubObject));
+			$journalNode->appendChild($this->createJournalArticleNode03($doc, $pubObject));
 		}
 	
 		return $journalNode;
@@ -316,14 +316,14 @@ class ArticleCrossrefXmlFilter extends IssueCrossrefXmlFilter {
 	 
 	-- modificação 02:
 
--createJournalArticleNodedois
+-createJournalArticleNode01
 
 Vai verificar qual é o primeiro pdf e seu doi respectivo. Preenche os correspondentes das subtags <doi> e <resource>
 A parte modificada aparece logo em seguida com "modificação 02 INICIO / FIM"
 
 */
 
-	function createJournalArticleNodedois($doc, $submission) {
+	function createJournalArticleNode01($doc, $submission) {
 		$deployment = $this->getDeployment();
 		$context = $deployment->getContext();
 		$request = Application::get()->getRequest();
@@ -334,16 +334,16 @@ A parte modificada aparece logo em seguida com "modificação 02 INICIO / FIM"
 		// Issue shoulld be set by now
 		$issue = $deployment->getIssue();
 
-		$JournalArticleNodedois = $doc->createElementNS($deployment->getNamespace(), 'journal_article');
-		$JournalArticleNodedois->setAttribute('publication_type', 'full_text');
-		$JournalArticleNodedois->setAttribute('metadata_distribution_opts', 'any');
+		$JournalArticleNode01 = $doc->createElementNS($deployment->getNamespace(), 'journal_article');
+		$JournalArticleNode01->setAttribute('publication_type', 'full_text');
+		$JournalArticleNode01->setAttribute('metadata_distribution_opts', 'any');
 
 
 		// title
 		$titlesNode = $doc->createElementNS($deployment->getNamespace(), 'titles');
 		$titlesNode->appendChild($node = $doc->createElementNS($deployment->getNamespace(), 'title', htmlspecialchars($publication->getData('title', $locale), ENT_COMPAT, 'UTF-8')));
 		if ($subtitle = $publication->getData('subtitle', $locale)) $titlesNode->appendChild($node = $doc->createElementNS($deployment->getNamespace(), 'subtitle', htmlspecialchars($subtitle, ENT_COMPAT, 'UTF-8')));
-		$JournalArticleNodedois->appendChild($titlesNode);
+		$JournalArticleNode01->appendChild($titlesNode);
 
 		// contributors
 		$contributorsNode = $doc->createElementNS($deployment->getNamespace(), 'contributors');
@@ -401,18 +401,18 @@ A parte modificada aparece logo em seguida com "modificação 02 INICIO / FIM"
 			$contributorsNode->appendChild($personNameNode);
 			$isFirst = false;
 		}
-		$JournalArticleNodedois->appendChild($contributorsNode);
+		$JournalArticleNode01->appendChild($contributorsNode);
 
 		// abstract
 		if ($abstract = $publication->getData('abstract', $locale)) {
 			$abstractNode = $doc->createElementNS($deployment->getJATSNamespace(), 'jats:abstract');
 			$abstractNode->appendChild($node = $doc->createElementNS($deployment->getJATSNamespace(), 'jats:p', htmlspecialchars(html_entity_decode(strip_tags($abstract), ENT_COMPAT, 'UTF-8'), ENT_COMPAT, 'UTF-8')));
-			$JournalArticleNodedois->appendChild($abstractNode);
+			$JournalArticleNode01->appendChild($abstractNode);
 		}
 
 		// publication date
 		if ($datePublished = $publication->getData('datePublished')) {
-			$JournalArticleNodedois->appendChild($this->createPublicationDateNode($doc, $datePublished));
+			$JournalArticleNode01->appendChild($this->createPublicationDateNode($doc, $datePublished));
 		}
 
 		// pages
@@ -442,7 +442,7 @@ A parte modificada aparece logo em seguida com "modificação 02 INICIO / FIM"
 				if ($otherPages != '') {
 					$pagesNode->appendChild($node = $doc->createElementNS($deployment->getNamespace(), 'other_pages', $otherPages));
 				}
-				$JournalArticleNodedois->appendChild($pagesNode);
+				$JournalArticleNode01->appendChild($pagesNode);
 			}
 		}
 
@@ -451,7 +451,7 @@ A parte modificada aparece logo em seguida com "modificação 02 INICIO / FIM"
 			$licenseNode = $doc->createElementNS($deployment->getAINamespace(), 'ai:program');
 			$licenseNode->setAttribute('name', 'AccessIndicators');
 			$licenseNode->appendChild($node = $doc->createElementNS($deployment->getAINamespace(), 'ai:license_ref', htmlspecialchars($publication->getData('licenseUrl'), ENT_COMPAT, 'UTF-8')));
-			$JournalArticleNodedois->appendChild($licenseNode);
+			$JournalArticleNode01->appendChild($licenseNode);
 		}
 
 /*
@@ -476,7 +476,7 @@ A parte modificada aparece logo em seguida com "modificação 02 INICIO / FIM"
 	
 			// Create DOI data node for the PDF galley
 			$doiDataNode = $this->createDOIDataNode($doc, $galleyDoi, $galleyUrl);
-			$JournalArticleNodedois->appendChild($doiDataNode);
+			$JournalArticleNode01->appendChild($doiDataNode);
 		}
 
 
@@ -535,14 +535,14 @@ A parte modificada aparece logo em seguida com "modificação 02 INICIO / FIM"
 		// text-mining - collection nodes
 		$submissionGalleys = array_merge($submissionGalleys, $remoteGalleys);
 		$this->appendTextMiningCollectionNodes($doc, $doiDataNode, $submission, $submissionGalleys);
-		$JournalArticleNodedois->appendChild($doiDataNode);
+		$JournalArticleNode01->appendChild($doiDataNode);
 
 		// component list (supplementary files)
 		if (!empty($componentGalleys)) {
-			$JournalArticleNodedois->appendChild($this->createComponentListNode($doc, $submission, $componentGalleys));
+			$JournalArticleNode01->appendChild($this->createComponentListNode($doc, $submission, $componentGalleys));
 		}
 
-		return $JournalArticleNodedois;
+		return $JournalArticleNode01;
 	}
 
 
@@ -551,7 +551,7 @@ A parte modificada aparece logo em seguida com "modificação 02 INICIO / FIM"
 	 
 	-- modificação 03:
 
--createJournalArticleNodetres
+-createJournalArticleNode02
 
 Vai verificar qual é o segundo pdf e seu doi respectivo. Preenche os correspondentes das subtags <doi> e <resource>
 A parte modificada aparece logo em seguida com "modificação 03 INICIO / FIM"
@@ -560,7 +560,7 @@ A parte modificada aparece logo em seguida com "modificação 03 INICIO / FIM"
 
 
 
-function createJournalArticleNodetres($doc, $submission) {
+function createJournalArticleNode02($doc, $submission) {
 	$deployment = $this->getDeployment();
 	$context = $deployment->getContext();
 	$request = Application::get()->getRequest();
@@ -571,16 +571,16 @@ function createJournalArticleNodetres($doc, $submission) {
 	// Issue shoulld be set by now
 	$issue = $deployment->getIssue();
 
-	$JournalArticleNodetres = $doc->createElementNS($deployment->getNamespace(), 'journal_article');
-	$JournalArticleNodetres->setAttribute('publication_type', 'full_text');
-	$JournalArticleNodetres->setAttribute('metadata_distribution_opts', 'any');
+	$JournalArticleNode02 = $doc->createElementNS($deployment->getNamespace(), 'journal_article');
+	$JournalArticleNode02->setAttribute('publication_type', 'full_text');
+	$JournalArticleNode02->setAttribute('metadata_distribution_opts', 'any');
 
 
 	// title
 	$titlesNode = $doc->createElementNS($deployment->getNamespace(), 'titles');
 	$titlesNode->appendChild($node = $doc->createElementNS($deployment->getNamespace(), 'title', htmlspecialchars($publication->getData('title', $locale), ENT_COMPAT, 'UTF-8')));
 	if ($subtitle = $publication->getData('subtitle', $locale)) $titlesNode->appendChild($node = $doc->createElementNS($deployment->getNamespace(), 'subtitle', htmlspecialchars($subtitle, ENT_COMPAT, 'UTF-8')));
-	$JournalArticleNodetres->appendChild($titlesNode);
+	$JournalArticleNode02->appendChild($titlesNode);
 
 	// contributors
 	$contributorsNode = $doc->createElementNS($deployment->getNamespace(), 'contributors');
@@ -638,18 +638,18 @@ function createJournalArticleNodetres($doc, $submission) {
 		$contributorsNode->appendChild($personNameNode);
 		$isFirst = false;
 	}
-	$JournalArticleNodetres->appendChild($contributorsNode);
+	$JournalArticleNode02->appendChild($contributorsNode);
 
 	// abstract
 	if ($abstract = $publication->getData('abstract', $locale)) {
 		$abstractNode = $doc->createElementNS($deployment->getJATSNamespace(), 'jats:abstract');
 		$abstractNode->appendChild($node = $doc->createElementNS($deployment->getJATSNamespace(), 'jats:p', htmlspecialchars(html_entity_decode(strip_tags($abstract), ENT_COMPAT, 'UTF-8'), ENT_COMPAT, 'UTF-8')));
-		$JournalArticleNodetres->appendChild($abstractNode);
+		$JournalArticleNode02->appendChild($abstractNode);
 	}
 
 	// publication date
 	if ($datePublished = $publication->getData('datePublished')) {
-		$JournalArticleNodetres->appendChild($this->createPublicationDateNode($doc, $datePublished));
+		$JournalArticleNode02->appendChild($this->createPublicationDateNode($doc, $datePublished));
 	}
 
 	// pages
@@ -679,7 +679,7 @@ function createJournalArticleNodetres($doc, $submission) {
 			if ($otherPages != '') {
 				$pagesNode->appendChild($node = $doc->createElementNS($deployment->getNamespace(), 'other_pages', $otherPages));
 			}
-			$JournalArticleNodetres->appendChild($pagesNode);
+			$JournalArticleNode02->appendChild($pagesNode);
 		}
 	}
 
@@ -688,7 +688,7 @@ function createJournalArticleNodetres($doc, $submission) {
 		$licenseNode = $doc->createElementNS($deployment->getAINamespace(), 'ai:program');
 		$licenseNode->setAttribute('name', 'AccessIndicators');
 		$licenseNode->appendChild($node = $doc->createElementNS($deployment->getAINamespace(), 'ai:license_ref', htmlspecialchars($publication->getData('licenseUrl'), ENT_COMPAT, 'UTF-8')));
-		$JournalArticleNodetres->appendChild($licenseNode);
+		$JournalArticleNode02->appendChild($licenseNode);
 	}
 
 /*
@@ -720,7 +720,7 @@ foreach ($galleys as $galley) {
 
 		// Create DOI data node for the PDF galley
 		$doiDataNode = $this->createDOIDataNode($doc, $galleyDoi, $galleyUrl);
-		$JournalArticleNodetres->appendChild($doiDataNode);
+		$JournalArticleNode02->appendChild($doiDataNode);
 	}
 
 /*
@@ -779,19 +779,19 @@ foreach ($galleys as $galley) {
 	// text-mining - collection nodes
 	$submissionGalleys = array_merge($submissionGalleys, $remoteGalleys);
 	$this->appendTextMiningCollectionNodes($doc, $doiDataNode, $submission, $submissionGalleys);
-	$JournalArticleNodetres->appendChild($doiDataNode);
+	$JournalArticleNode02->appendChild($doiDataNode);
 
 	// component list (supplementary files)
 	if (!empty($componentGalleys)) {
-		$JournalArticleNodetres->appendChild($this->createComponentListNode($doc, $submission, $componentGalleys));
+		$JournalArticleNode02->appendChild($this->createComponentListNode($doc, $submission, $componentGalleys));
 	}
 
-	return $JournalArticleNodetres;
+	return $JournalArticleNode02;
 }
 
 
 
-function createJournalArticleNodequatro($doc, $submission) {
+function createJournalArticleNode03($doc, $submission) {
 	$deployment = $this->getDeployment();
 	$context = $deployment->getContext();
 	$request = Application::get()->getRequest();
@@ -802,16 +802,16 @@ function createJournalArticleNodequatro($doc, $submission) {
 	// Issue shoulld be set by now
 	$issue = $deployment->getIssue();
 
-	$JournalArticleNodequatro = $doc->createElementNS($deployment->getNamespace(), 'journal_article');
-	$JournalArticleNodequatro->setAttribute('publication_type', 'full_text');
-	$JournalArticleNodequatro->setAttribute('metadata_distribution_opts', 'any');
+	$JournalArticleNode03 = $doc->createElementNS($deployment->getNamespace(), 'journal_article');
+	$JournalArticleNode03->setAttribute('publication_type', 'full_text');
+	$JournalArticleNode03->setAttribute('metadata_distribution_opts', 'any');
 
 
 	// title
 	$titlesNode = $doc->createElementNS($deployment->getNamespace(), 'titles');
 	$titlesNode->appendChild($node = $doc->createElementNS($deployment->getNamespace(), 'title', htmlspecialchars($publication->getData('title', $locale), ENT_COMPAT, 'UTF-8')));
 	if ($subtitle = $publication->getData('subtitle', $locale)) $titlesNode->appendChild($node = $doc->createElementNS($deployment->getNamespace(), 'subtitle', htmlspecialchars($subtitle, ENT_COMPAT, 'UTF-8')));
-	$JournalArticleNodequatro->appendChild($titlesNode);
+	$JournalArticleNode03->appendChild($titlesNode);
 
 	// contributors
 	$contributorsNode = $doc->createElementNS($deployment->getNamespace(), 'contributors');
@@ -869,18 +869,18 @@ function createJournalArticleNodequatro($doc, $submission) {
 		$contributorsNode->appendChild($personNameNode);
 		$isFirst = false;
 	}
-	$JournalArticleNodequatro->appendChild($contributorsNode);
+	$JournalArticleNode03->appendChild($contributorsNode);
 
 	// abstract
 	if ($abstract = $publication->getData('abstract', $locale)) {
 		$abstractNode = $doc->createElementNS($deployment->getJATSNamespace(), 'jats:abstract');
 		$abstractNode->appendChild($node = $doc->createElementNS($deployment->getJATSNamespace(), 'jats:p', htmlspecialchars(html_entity_decode(strip_tags($abstract), ENT_COMPAT, 'UTF-8'), ENT_COMPAT, 'UTF-8')));
-		$JournalArticleNodequatro->appendChild($abstractNode);
+		$JournalArticleNode03->appendChild($abstractNode);
 	}
 
 	// publication date
 	if ($datePublished = $publication->getData('datePublished')) {
-		$JournalArticleNodequatro->appendChild($this->createPublicationDateNode($doc, $datePublished));
+		$JournalArticleNode03->appendChild($this->createPublicationDateNode($doc, $datePublished));
 	}
 
 	// pages
@@ -910,7 +910,7 @@ function createJournalArticleNodequatro($doc, $submission) {
 			if ($otherPages != '') {
 				$pagesNode->appendChild($node = $doc->createElementNS($deployment->getNamespace(), 'other_pages', $otherPages));
 			}
-			$JournalArticleNodequatro->appendChild($pagesNode);
+			$JournalArticleNode03->appendChild($pagesNode);
 		}
 	}
 
@@ -919,7 +919,7 @@ function createJournalArticleNodequatro($doc, $submission) {
 		$licenseNode = $doc->createElementNS($deployment->getAINamespace(), 'ai:program');
 		$licenseNode->setAttribute('name', 'AccessIndicators');
 		$licenseNode->appendChild($node = $doc->createElementNS($deployment->getAINamespace(), 'ai:license_ref', htmlspecialchars($publication->getData('licenseUrl'), ENT_COMPAT, 'UTF-8')));
-		$JournalArticleNodequatro->appendChild($licenseNode);
+		$JournalArticleNode03->appendChild($licenseNode);
 	}
 
 /*
@@ -954,7 +954,7 @@ function createJournalArticleNodequatro($doc, $submission) {
 
         // Create DOI data node for the PDF galley
         $doiDataNode = $this->createDOIDataNode($doc, $galleyDoi, $galleyUrl);
-        $JournalArticleNodequatro->appendChild($doiDataNode);
+        $JournalArticleNode03->appendChild($doiDataNode);
     }
 
 /*
@@ -1013,14 +1013,14 @@ function createJournalArticleNodequatro($doc, $submission) {
 	// text-mining - collection nodes
 	$submissionGalleys = array_merge($submissionGalleys, $remoteGalleys);
 	$this->appendTextMiningCollectionNodes($doc, $doiDataNode, $submission, $submissionGalleys);
-	$JournalArticleNodequatro->appendChild($doiDataNode);
+	$JournalArticleNode03->appendChild($doiDataNode);
 
 	// component list (supplementary files)
 	if (!empty($componentGalleys)) {
-		$JournalArticleNodequatro->appendChild($this->createComponentListNode($doc, $submission, $componentGalleys));
+		$JournalArticleNode03->appendChild($this->createComponentListNode($doc, $submission, $componentGalleys));
 	}
 
-	return $JournalArticleNodequatro;
+	return $JournalArticleNode03;
 }
 
 
