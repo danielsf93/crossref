@@ -928,6 +928,8 @@ function createJournalArticleNodequatro($doc, $submission) {
 
 
 							   */
+	$pdfGalley1 = null;
+	$pdfGalley2 = null;
 	$pdfGalley3 = null;
 	$galleys = $publication->getData('galleys');
 	 foreach ($galleys as $galley) {
