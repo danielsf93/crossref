@@ -13,6 +13,6 @@
 <version>
 	<application>crossref</application>
 	<type>plugins.importexport</type>
-	<release>2.1.0.0</release>
-	<date>2016-06-28</date>
+	<release>3.2.1.1</release>
+	<date>2023-07-17</date>
 </version>
